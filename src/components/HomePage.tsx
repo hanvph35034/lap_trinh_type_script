@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import instance from '~/apis';
-
+import { NavLink } from "react-router-dom";
 import { TpProducts } from '~/types/Product';
 
 const HomePage = () => {
@@ -38,7 +38,7 @@ const HomePage = () => {
               <span>Số lượng: {product.stock}</span>
             </div>
             <p>{product.price}.000 VND</p>
-            <a href={product.id}>Chi tiết sản phẩm</a>
+            <NavLink to= "/DetailProduct/">chi tiết sản phẩm</NavLink>
           </div>
         ))}
       </div>

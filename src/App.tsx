@@ -8,7 +8,9 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import HomePage from './components/HomePage'
 import DetailProduct from './components/DetailProduct' 
-
+import Login from './view/Login';
+import Register from './view/Register';
+import NotFound from './view/NotFound';
 // import TableProduct from './components/admin/TableProduct'
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
@@ -16,15 +18,12 @@ function App() {
     <>
 
       <Header />
-      {/* <HomePage /> */}
-      {/* <DetailProduct /> */}
-      {/* <TableProduct /> */}
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/shop/:id' element={<DetailProduct />} />
-        {/* <Route path='/login' element={<Login />} />
+        <Route path='/DetailProduct/:id' element={<DetailProduct />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='*' element={<NotFound />} /> */}
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
    

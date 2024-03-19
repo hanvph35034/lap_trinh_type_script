@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { NavLink } from "react-router-dom";
 import { Navbar, Nav,  FormControl, Button } from 'react-bootstrap';
 const Header = () => {
   return (
@@ -10,11 +10,11 @@ const Header = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link href="#">Trang chủ</Nav.Link>
-          <Nav.Link href="#">Danh mục</Nav.Link>
-          <Nav.Link href="#">
+          <NavLink to="/">Trang chủ</NavLink>
+          <NavLink to="/">Danh mục</NavLink>
+          <NavLink to="/register">
             Đăng nhập <i className="fas fa-user"></i>
-          </Nav.Link>
+          </NavLink>
           </Nav>
           </Navbar.Collapse>
           <div className="d-flex">
