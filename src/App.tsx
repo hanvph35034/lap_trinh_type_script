@@ -15,6 +15,7 @@ import NotFound from './view/NotFound';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TableProduct from './components/admin/TableProduct';
 import Add from './components/admin/Add';
+import Edit from './components/admin/Edit';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='*' element={<NotFound />} />
         <Route path='/admin' element={<TableProduct />} />
         <Route path='/admin/add' element={<Add/>} />
+        <Route path='/admin/edit/:id' element={<Edit/>} />
       </Routes>
       <Footer />
    

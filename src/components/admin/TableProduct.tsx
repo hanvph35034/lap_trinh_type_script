@@ -20,6 +20,19 @@ const TableProduct = () => {
     fetchProducts();
   }, []);
 
+  const handleDeleteProduct = async (productId: string) => {
+    const confirmDelete = window.confirm('Bạn có muốn xóa sản phẩm này không?');
+    if (confirmDelete) {
+      try {
+        await instance.delete(`/products/${productId}`);
+        const updatedProducts = products.filter(product => product.id !== productId);
+        setProducts(updatedProducts);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <>
     <div>
@@ -55,8 +68,8 @@ const TableProduct = () => {
               <td>{product.stock}</td>
               <td>{product.description}</td>
               <td>
-                <Button variant="primary m-2">sửa</Button>
-                <Button variant="danger">xóa</Button>
+                <Button variant="primary m-2"><NavLink className="nav-link" to={`/admin/edit/${product.id}`}>sửa sản phẩm </NavLink></Button>
+                <Button variant="danger" onClick={() => handleDeleteProduct(product.id)}>xóa</Button>
               </td>
             </tr>
          
@@ -66,5 +79,4 @@ const TableProduct = () => {
     </div></>
   );
 };
-
 export default TableProduct;
