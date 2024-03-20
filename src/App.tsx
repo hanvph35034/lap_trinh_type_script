@@ -13,6 +13,10 @@ import Register from './view/Register';
 import NotFound from './view/NotFound';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import TableProduct from './components/admin/TableProduct';
+import Add from './components/admin/Add';
+
+
 function App() {
   return (
     <>
@@ -24,6 +28,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='*' element={<NotFound />} />
+        <Route path='/admin' element={<TableProduct />} />
+        <Route path='/admin/add' element={<Add/>} />
       </Routes>
       <Footer />
    
