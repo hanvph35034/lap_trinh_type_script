@@ -2,14 +2,16 @@ import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react'
 import { TpProducts } from '~/types/Product';
 import instance from '~/apis';
-
+import { useParams } from 'react-router-dom'; 
 const DetailProduct = () => {
-  const [products, setProducts] = useState<TpProducts[]>([]);
+  const { id } = useParams();
+  const [products, setProducts] = useState<TpProducts | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await instance.get('/products');
+      
+        const response = await instance.get(`/products/${id}`); 
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -17,11 +19,14 @@ const DetailProduct = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [id]);
+  if (!products) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       <Container>
-        {products.map((products) => (
+     
           <Row>
 
             <Col md={6}>
@@ -44,7 +49,7 @@ const DetailProduct = () => {
             </Col>
 
           </Row>
-        ))}
+     
       </Container>
     </div>
   );

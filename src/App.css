@@ -36,7 +36,9 @@
   border: 1px solid #e0e0e0;
   text-align: center;
 }
-
+.active {
+  color: rgb(130, 231, 238);
+}
 /* 
 .logo {
   height: 6em;

@@ -38,7 +38,7 @@ const HomePage = () => {
               <span>Số lượng: {product.stock}</span>
             </div>
             <p>{product.price}.000 VND</p>
-            <NavLink to= "/DetailProduct/">chi tiết sản phẩm</NavLink>
+            <NavLink to={`/DetailProduct/${product.id}`}>chi tiết sản phẩm</NavLink>
           </div>
         ))}
       </div>
