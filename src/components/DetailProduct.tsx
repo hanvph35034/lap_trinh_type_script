@@ -10,11 +10,10 @@ const DetailProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-      
         const response = await instance.get(`/products/${id}`); 
         setProducts(response.data);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Lỗi không lấy được dữ liệu:', error);
       }
     };
 
@@ -26,9 +25,7 @@ const DetailProduct = () => {
   return (
     <div>
       <Container>
-     
           <Row>
-
             <Col md={6}>
               <Image src={products.thumbnail} fluid />
             </Col>
@@ -47,9 +44,7 @@ const DetailProduct = () => {
                 </Button>
               </Form>
             </Col>
-
           </Row>
-     
       </Container>
     </div>
   );

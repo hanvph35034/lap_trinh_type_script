@@ -12,7 +12,7 @@ const Register = () => {
   const [firstError, setFirstError] = useState('');
   const [lastError, setLastError] = useState('');
   const [passError, setPassError] = useState('');
-  const handleRegister = async (e) => {
+  const handleRegister = async (e:any) => {
     e.preventDefault();
     try {
       const newRegister = {

@@ -24,6 +24,7 @@ const Edit = () => {
   const [productQuantity, setProductQuantity] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productImage, setProductImage] = useState('');
+
   useEffect(() => {
     if (products) {
       setProductName(products.title || '');
@@ -34,7 +35,7 @@ const Edit = () => {
     }
   }, [products]);
 
-  const handleEditProduct = async (e) => {
+  const handleEditProduct = async (e:any) => {
     e.preventDefault();
     try {
       const updatedProduct = {

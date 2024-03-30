@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import instance from '~/apis';
 import { NavLink } from "react-router-dom";
 import { TpProducts } from '~/types/Product';
+import Product from './Product';
 
 const HomePage = () => {
   const [products, setProducts] = useState<TpProducts[]>([]);
-
+  const [startIndex, setStartIndex] = useState(0);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await instance.get('/products');
+        const response = await instance.get(`/products?_start=${startIndex}&_limit=8`);
         setProducts(response.data);
       } catch (error) {
         console.error( error);
@@ -17,8 +18,16 @@ const HomePage = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [startIndex]);
+  const handleNextClick = () => {
+    setStartIndex(startIndex + 8);
+  };
 
+  const handlePrevClick = () => {
+    if (startIndex >= 10) {
+      setStartIndex(startIndex - 8);
+    }
+  };
   return (
     <div className="home-container">
       <div className="banner">
@@ -27,21 +36,11 @@ const HomePage = () => {
       <h4>Sản Phẩm Nổi bật</h4>
       <div className="product-grid">
         {products.map((product) => (
-          <div className="product-item" key={product.id}>
-            <img width={200} height={200} src={product.images?.[0]} alt="Product 1" />
-            <h3>{product.title}</h3>
-            <p>Thông tin sản phẩm</p>
-            <div className="rating">
-              <span>⭐⭐⭐⭐⭐</span>
-            </div>
-            <div className="quantity">
-              <span>Số lượng: {product.stock}</span>
-            </div>
-            <p>{product.price}.000 VND</p>
-            <NavLink to={`/DetailProduct/${product.id}`}>chi tiết sản phẩm</NavLink>
-          </div>
+         <Product product={product} />
         ))}
       </div>
+      <button onClick={handlePrevClick}>Prev</button>
+      <button onClick={handleNextClick}>Next</button>
     </div>
   );
 };

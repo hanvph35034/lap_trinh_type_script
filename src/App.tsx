@@ -24,14 +24,19 @@ function App() {
 
       <Header />
       <Routes>
-        <Route path='/' element={<Home />} />
+
+        <Route path='/'>
+        <Route index element={<Home />} />
         <Route path='/DetailProduct/:id' element={<DetailProduct />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='*' element={<NotFound />} />
-        <Route path='/admin' element={<TableProduct />} />
+         </Route>
+        <Route path='/admin'>
+        <Route index  element={<TableProduct />} />
         <Route path='/admin/add' element={<Add/>} />
         <Route path='/admin/edit/:id' element={<Edit/>} />
+        </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
    
