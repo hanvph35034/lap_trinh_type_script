@@ -4,35 +4,13 @@ import { Table, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import instance from '~/apis';
 
-const TableProduct = () => {
-  const [products, setProducts] = useState<TpProducts[]>([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await instance.get('/products');
-        setProducts(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  const handleDeleteProduct = async (productId: string) => {
-    const confirmDelete = window.confirm('Bạn có muốn xóa sản phẩm này không?');
-    if (confirmDelete) {
-      try {
-        await instance.delete(`/products/${productId}`);
-        const updatedProducts = products.filter(product => product.id !== productId);
-        setProducts(updatedProducts);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-
+type Pops ={products : TpProducts[];
+onDel:(id:number| undefined) => void
+};
+const TableProduct = ({products ,onDel} : Pops) => {
+  const handledelete = (id : any)=>{
+ onDel(id);
+  }
   return (
     <>
     <div>
@@ -55,21 +33,21 @@ const TableProduct = () => {
             <th>Thao tác</th>
           </tr>
         </thead>
-        {products.map((product) => (
-        <tbody key={product.id}>
+        {products.map((i) => (
+        <tbody key={i.id}>
           
             <tr >
-              <td>{product.id}</td>
+              <td>{i.id}</td>
               <td>
-                <img width={100} src={product.images?.[0]} alt="" />
+                <img width={100} src={i.images?.[0]} alt="" />
               </td>
-              <td>{product.title}</td>
-              <td>{product.price}</td>
-              <td>{product.stock}</td>
-              <td>{product.description}</td>
+              <td>{i.title}</td>
+              <td>{i.price}</td>
+              <td>{i.stock}</td>
+              <td>{i.description}</td>
               <td>
-                <Button variant="primary m-2"><NavLink className="nav-link" to={`/admin/edit/${product.id}`}>sửa sản phẩm </NavLink></Button>
-                <Button variant="danger" onClick={() => handleDeleteProduct(product.id)}>xóa</Button>
+                <Button variant="primary m-2"><NavLink className="nav-link" to={`/admin/edit/${i.id}`}>sửa sản phẩm </NavLink></Button>
+                <Button variant="danger" onClick={() => handledelete(i.id)}>xóa</Button>
               </td>
             </tr>
          

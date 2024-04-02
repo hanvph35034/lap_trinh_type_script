@@ -16,13 +16,11 @@ const HomePage = () => {
         console.error( error);
       }
     };
-
     fetchProducts();
   }, [startIndex]);
   const handleNextClick = () => {
     setStartIndex(startIndex + 8);
   };
-
   const handlePrevClick = () => {
     if (startIndex >= 10) {
       setStartIndex(startIndex - 8);
